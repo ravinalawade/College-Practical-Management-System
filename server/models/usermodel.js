@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 
 
 var Student = new mongoose.Schema({
@@ -90,6 +91,38 @@ var Teacher=new mongoose.Schema({
     },
 });
 
+//methods
+Student.methods.verifyPassword = function (password) {
+    console.log(password,this.password);
+    if (password==this.password)
+    return true;
+    else
+    return false;
+};
+
+Teacher.methods.verifyPassword = function (password) {
+    console.log(password,this.password);
+    if (password==this.password)
+    return true;
+    else
+    return false;
+};
+
+Student.methods.generateJwt = function () {
+    return jwt.sign({ _id: this._id},
+        process.env.JWT_SECRET,
+    {
+        expiresIn: process.env.JWT_EXP
+    });
+}
+
+Teacher.methods.generateJwt = function () {
+    return jwt.sign({ _id: this._id},
+        process.env.JWT_SECRET,
+    {
+        expiresIn: process.env.JWT_EXP
+    });
+}
 
 
 mongoose.model('Student',Student);
