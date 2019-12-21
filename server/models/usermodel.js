@@ -26,7 +26,7 @@ var Student = new mongoose.Schema({
     Phone_no:{
         type:String,
         required:'Phone_no cant be empty',
-        minlength: [4, 'Password must be atleast 4 character long']
+        minlength: [4, 'Phone no must be atleast 4 character long']
     },
     Name: {
         type: String,
@@ -42,6 +42,9 @@ var Student = new mongoose.Schema({
         required: 'Password can\'t be empty',
         minlength: [4, 'Password must be atleast 4 character long']
     },
+    // work:{
+    //     type:String
+    // }
     
 });
 
@@ -89,6 +92,9 @@ var Teacher=new mongoose.Schema({
         type:[],
         required:'Class cant be empty'
     },
+    // work:{
+    //     type:String
+    // }
 });
 
 //methods

@@ -17,6 +17,7 @@ var fun=require('./../models/db');
 const passport = require('passport');
 const student=mongoose.model('Student');
 const teacher=mongoose.model('Teacher');
+const _ = require('lodash');
 
 module.exports.student_register = (req, res, next) => {
     console.log(req.body.student_id);
@@ -30,6 +31,7 @@ module.exports.student_register = (req, res, next) => {
     stu.Name=req.body.Name;
     stu.email=req.body.email;
     stu.password=req.body.password;
+    // stu.work='student';
     stu.save((err, doc) => {
         if (!err)
         {
@@ -59,6 +61,7 @@ module.exports.teacher_register = (req, res, next) => {
     tea.email=req.body.email;
     tea.password=req.body.password;
     tea.Subject=req.body.Subject;
+    // tea.work='teacher';
     tea.save((err, doc) => {
         if (!err)
             res.send(doc);
@@ -112,7 +115,15 @@ module.exports.download = (req, res) =>  {
 module.exports.generate=(req,res)=>{
     console.log(req.body);
     console.log("hello routing");
+    un=req.body.Id.split('');
+    if(un[0]=='t')
+    fun.db.collection('teachers').updateOne({'teacher_id':req.body.Id}, {$set: {'password' : req.body.Password}}, function(err, result){
+        // console.log(result);
+        console.log(err);
+        // console.log(fun.db.collection('student').find());
+    });
     // console.log(fun.db.collection('student'));
+    else
     fun.db.collection('students').updateOne({'student_id':req.body.Id}, {$set: {'password' : req.body.Password}}, function(err, result){
         // console.log(result);
         console.log(err);
@@ -128,10 +139,35 @@ module.exports.authenticate = (req, res, next) => {
     // call for passport authentication
     passport.authenticate('local', (err, user, info) => {       
         // error from passport middleware
+        // console.log(user.work);
         if (err) return res.status(400).json(err);
         // registered user
-        else if (user) return res.status(200).json({ "token": user.generateJwt() });
+        else if (user) return res.status(200).json({ "token": user.generateJwt()});
         // unknown user or wrong password
         else return res.status(404).json(info);
     })(req, res);
+}
+
+module.exports.studentProfile = (req, res, next) =>{
+    console.log('in student');
+    student.findOne({ _id: req._id },
+        (err, user) => {
+            if (!user)
+                return res.status(404).json({ status: false, message: 'User record not found.' });
+            else
+                return res.status(200).json({ status: true, user : _.pick(user,['student_id','Year','Batch','Roll_no']) });
+        }
+    );
+}
+
+module.exports.teacherProfile = (req, res, next) =>{
+    console.log('in teacher');
+    teacher.findOne({ _id: req._id },
+        (err, user) => {
+            if (!user)
+                return res.status(404).json({ status: false, message: 'User record not found.' });
+            else
+                return res.status(200).json({ status: true, user : _.pick(user,['teacher_id','Year','Batch','Role']) });
+        }
+    );
 }
