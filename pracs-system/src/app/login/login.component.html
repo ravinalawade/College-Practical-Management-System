@@ -8,11 +8,22 @@
         </div>
     
         <!-- Login Form -->
-        <form #loginForm='ngForm' (ngSubmit)="onSubmit(loginForm)">
-            <input #username="ngModel" [(ngModel)]="userService.selectedUSer.username" type="text" id="login" class="fadeIn second" name="login" placeholder="Username" required>
-            <input #password="ngModel" [(ngModel)]="userService.selectedUSer.password" type="password" id="password" class="fadeIn third" name="login" placeholder="Password" required>
-            <input type="submit" class="fadeIn fourth" value="Log In">
-        </form>
+        <form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+        <input type="text" id="username" class="fadeIn second" name="username" #username="ngModel" [(ngModel)]="model.username" placeholder="Username" required
+        [ngClass]="{'invalid-textbox' :signInForm.submitted && !username.valid }">
+      <!-- <div *ngIf="signInForm.submitted && email.errors?.pattern">
+        <label class="validation-message">Invalid email address.</label>
+      </div> -->
+      <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password" placeholder="Password" required minlength="4"
+        [ngClass]="{'invalid-textbox' :signInForm.submitted && !password.valid }">
+      <div *ngIf="signInForm.submitted && password.errors?.minlength">
+        <label class="validation-message">Minimum 4 characters.</label>
+      </div>
+      <input type="submit" value="Sign In">
+    </form>
+    <div class="alert" *ngIf="serverErrorMessages">
+        {{serverErrorMessages}}
+      </div>
     
         <!-- Signup account for new user -->
         <div id="formFooter">

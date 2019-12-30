@@ -8,16 +8,38 @@
         </div>
     
         <!-- Login Form -->
-        <form>
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="Username">
-            <input type="text" id="password" class="fadeIn third" name="login" placeholder="Password">
-            <input type="text" id="password" class="fadeIn third" name="login" placeholder="Renter Password">
+        <form #SignupForm="ngForm" (ngSubmit)="SignupForm.valid && onSubmit(SignupForm)">
+            <input type="text" #Id="ngModel" [(ngModel)]="userService.selectedUser.Id" id="login" class="fadeIn second" name="Id" placeholder="Username" 
+            required  [ngClass]="{'invalid-textbox' :SignupForm.submitted && !Id.valid }">
+            <div *ngIf="SignupForm.submitted && !Id.valid">
+              <label class="validation-message">This field is required.</label>
+            </div>
+            <input type="password" #Password="ngModel" [(ngModel)]="userService.selectedUser.Password" id="password" class="fadeIn third" name="Password" placeholder="Password"
+            minlength="4" required [ngClass]="{'invalid-textbox' :SignupForm.submitted && !Password.valid }">
+            <div *ngIf="SignupForm.submitted && Password.errors">
+                <label *ngIf="Password.errors.required" class="validation-message">This field is required.</label>
+                <label *ngIf="Password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+            </div>
+            <input type="password" #Ren_Password="ngModel" [(ngModel)]="userService.selectedUser.Ren_Password" id="password" class="fadeIn third" name="Ren_Password" placeholder="Renter Password"
+            minlength="4" required [ngClass]="{'invalid-textbox' :SignupForm.submitted && !Ren_Password.valid }">
+            <div *ngIf="SignupForm.submitted && Ren_Password.errors">
+                <label *ngIf="Ren_Password.errors.required" class="validation-message">This field is required.</label>
+                <label *ngIf="Ren_Password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+            </div>
             <input type="submit" class="fadeIn fourth" value="Sign Up">
         </form>
     
         <!-- Remind Passowrd -->
         <div id="formFooter">
         <a class="underlineHover" href="#">Forgot Password?</a>
+        </div>
+        <!-- Success message -->
+        <div class="success" *ngIf="showSucessMessage">
+            Saved successfully
+        </div>
+        <!-- Error message -->
+        <div class="alert" *ngIf="serverErrorMessages">
+            {{serverErrorMessages}}
         </div>
     
     </div>
