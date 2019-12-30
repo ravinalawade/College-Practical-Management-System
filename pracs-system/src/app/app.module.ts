@@ -11,11 +11,19 @@ import { UserService } from './shared/user.service';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
 import { StudentprofileComponent } from './studentprofile/studentprofile.component';
 import { TeacherprofileComponent } from './teacherprofile/teacherprofile.component';
 //other
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { StudentComponent } from './admin/student/student.component';
+import { TeacherComponent } from './admin/teacher/teacher.component';
+import { TimetableComponent } from './admin/timetable/timetable.component';
+import { SubInchargeComponent } from './sub-incharge/sub-incharge.component';
+import { ClassInchargeComponent } from './class-incharge/class-incharge.component';
+import { HodComponent } from './hod/hod.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +31,14 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     SignupComponent,
     LoginComponent,
     StudentprofileComponent,
-    TeacherprofileComponent
+    TeacherprofileComponent,
+    AdminComponent,
+    StudentComponent,
+    TeacherComponent,
+    TimetableComponent,
+    SubInchargeComponent,
+    ClassInchargeComponent,
+    HodComponent
   ],
   imports: [
     BrowserModule,
