@@ -28,6 +28,10 @@ export class UserService {
     return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials,this.noAuthHeader);
   }
 
+  // uploadexcel(user:User){
+  //   return this.http.post(environment.apiBaseUrl + '/uploadexcel',user);
+  // }
+
   getstudentProfile() {
     return this.http.get(environment.apiBaseUrl + '/studentProfile');
   }
