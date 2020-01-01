@@ -10,13 +10,15 @@ import { Router } from "@angular/router";
 export class TeacherprofileComponent implements OnInit {
 
   userDetails;
+  roles;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.userService.getteacherProfile().subscribe(
       res => {
         this.userDetails = res['user'];
-        console.log(res['teacher_id'])
+        this.roles=this.userDetails.Role.split(',');
+        console.log(this.userDetails.teacher_id);
       },
       err => { 
         console.log(err);
