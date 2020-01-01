@@ -42,9 +42,7 @@ var Student = new mongoose.Schema({
         required: 'Password can\'t be empty',
         minlength: [4, 'Password must be atleast 4 character long']
     },
-    attendance:{
-        type:[]
-    }
+    
     // work:{
     //     type:String
     // }
@@ -282,4 +280,4 @@ Teacher.methods.generateJwt = function () {
 mongoose.model('Student',Student);
 mongoose.model('Teacher',Teacher);
 mongoose.model('Timetable',Timetable);
-// mongoose.model('Attendance',Attendance);
+mongoose.model('Attendance',Attendance);
