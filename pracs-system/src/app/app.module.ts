@@ -20,9 +20,9 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { StudentComponent } from './admin/student/student.component';
 import { TeacherComponent } from './admin/teacher/teacher.component';
 import { TimetableComponent } from './admin/timetable/timetable.component';
-import { SubInchargeComponent } from './sub-incharge/sub-incharge.component';
-import { ClassInchargeComponent } from './class-incharge/class-incharge.component';
-import { HodComponent } from './hod/hod.component';
+import { SubInchargeComponent } from './teacherprofile/sub-incharge/sub-incharge.component';
+import { ClassInchargeComponent } from './teacherprofile/class-incharge/class-incharge.component';
+import { HodComponent } from './teacherprofile/hod/hod.component';
 
 
 @NgModule({

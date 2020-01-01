@@ -55,19 +55,19 @@ var Teacher=new mongoose.Schema({
         required:'Student id cant be empty'
     },
     Role:{
-        type:[],
+        type:String,
         required:'Role cant be empty'
     },
     Year:{
-        type:[],
+        type:String,
         required:'Class cant be empty'
     },
     Batch:{
-        type:[],
+        type:String,
         required:'Batch cant be empty'
     },
     Division:{
-        type:[],
+        type:String,
         required:'Division cant be empty'
     },
     Phone_no:{
@@ -90,7 +90,7 @@ var Teacher=new mongoose.Schema({
         minlength: [4, 'Password must be atleast 4 character long']
     },
     Subject:{
-        type:[],
+        type:String,
         required:'Class cant be empty'
     },
     // work:{
