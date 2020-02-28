@@ -17,13 +17,7 @@ export class TeacherprofileComponent implements OnInit {
     this.userService.getteacherProfile().subscribe(
       res => {
         this.userDetails = res['user'];
-        // module.exports.userDetails=this.userDetails;
         this.roles=this.userDetails.Role.split(',');
-        if (this.roles.length==1)
-        {
-          this.router.navigateByUrl('/teacherprofile/'+this.roles[0]);
-        }
-        this.userService.setData(this.userDetails);
         console.log(this.userDetails.teacher_id);
       },
       err => { 
@@ -31,12 +25,11 @@ export class TeacherprofileComponent implements OnInit {
         
       }
     );
-  
   }
 
   onLogout(){
     this.userService.deleteToken();
     this.router.navigate(['/login']);
   }
- 
+
 }
