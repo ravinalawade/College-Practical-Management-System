@@ -23,7 +23,6 @@ import { TimetableComponent } from './admin/timetable/timetable.component';
 import { SubInchargeComponent } from './teacherprofile/sub-incharge/sub-incharge.component';
 import { ClassInchargeComponent } from './teacherprofile/class-incharge/class-incharge.component';
 import { HodComponent } from './teacherprofile/hod/hod.component';
-import { PracticalInchargeComponent } from './teacherprofile/practical-incharge/practical-incharge.component';
 
 
 @NgModule({
@@ -39,8 +38,7 @@ import { PracticalInchargeComponent } from './teacherprofile/practical-incharge/
     TimetableComponent,
     SubInchargeComponent,
     ClassInchargeComponent,
-    HodComponent,
-    PracticalInchargeComponent
+    HodComponent
   ],
   imports: [
     BrowserModule,
