@@ -12,6 +12,7 @@ import { TimetableComponent } from './admin/timetable/timetable.component';
 import { ClassInchargeComponent } from './teacherprofile/class-incharge/class-incharge.component';
 import { SubInchargeComponent } from './teacherprofile/sub-incharge/sub-incharge.component';
 import { HodComponent } from './teacherprofile/hod/hod.component';
+import { PracticalInchargeComponent } from './teacherprofile/practical-incharge/practical-incharge.component'
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -23,9 +24,15 @@ const routes: Routes = [
   { path: 'admin/timetable', component: TimetableComponent},
   { path: 'studentprofile', component: StudentprofileComponent,canActivate:[AuthGuard] },
   { path: 'teacherprofile', component: TeacherprofileComponent,canActivate:[AuthGuard] },
-  { path: 'teacherprofile/class_incharge', component: ClassInchargeComponent},
-  { path: 'teacherprofile/subject_incharge', component: SubInchargeComponent},
-  { path: 'teacherprofile/hod', component: HodComponent}
+  { path: 'teacherprofile/class_incharge', component: TeacherprofileComponent,
+    children: [{ path: '', component: ClassInchargeComponent }]
+  },
+  { path: 'teacherprofile/subject_incharge', component: TeacherprofileComponent,
+    children: [{ path: '', component: SubInchargeComponent }]},
+  { path: 'teacherprofile/hod', component: TeacherprofileComponent,
+    children: [{ path: '', component: HodComponent }]},
+  { path: 'teacherprofile/practical_incharge', component: TeacherprofileComponent,
+    children: [{ path: '', component: PracticalInchargeComponent }]}
 ];
 
 @NgModule({

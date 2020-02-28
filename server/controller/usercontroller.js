@@ -288,30 +288,39 @@ module.exports.authenticate = (req, res, next) => {
 //Student login
 module.exports.studentProfile = (req, res, next) =>{
     console.log('in student');
+    
     student.findOne({ _id: req._id },
         (err, user) => {
             if (!user)
                 return res.status(404).json({ status: false, message: 'User record not found.' });
             else
+            {
                 // console.log(user['Year']);
+                let lect;
                 var id =user['student_id']
                 var y=user['Year'];
                 var d=user['Division'];
                 var b=user['Batch'];
+                console.log('1');
                 timetable.findOne({'Year':y,'Division':d,'Batch':b},
                 (err,res)=>{
                     if (!res)
                         console.log("if");
                     else
+                    {
                         var date_ob = new Date();
+                        // date_ob=date_ob.toISOString()
+                        console.log(date_ob.toISOString());
                         var today=date_ob.getDate();
                         console.log(today);
                         // current hours
                         var hours = date_ob.getHours();
-                        if (hours>12)
-                        hours-=12;
+                        console.log(hours);
+                        // if (hours>12)
+                        // hours-=12;
                         // current minutes
                         var minutes = date_ob.getMinutes();
+
                         var curr=hours*60 +minutes;
 
                         var time =res['Time'];
@@ -356,9 +365,20 @@ module.exports.studentProfile = (req, res, next) =>{
                             }
                         console.log(ent,ext,'  ',curr,hours,minutes);
                         console.log(res);
-                });
-                return res.status(200).json({ status: true, user : _.pick(user,['student_id','Year','Batch','Roll_no']) });
+                        lect=res['Subject_Name'];
+                        console.log("in time fun",lect);
+                        return(res['Subject_Name']);
+                    }
+                    });
+                    console.log('hello',lect);
+                    data= _.pick(user,['student_id','Year','Batch','Roll_no','Division','Name','email']);
+                    sub=_.pick(res,['Subject_Name']);
+                    console.log('subject',sub);
+                    data['Subject_Name']=sub;
+                    console.log('this is new data',data);
+                return res.status(200).json({ status: true, user : data});
         }
+    }
     );
 }
 

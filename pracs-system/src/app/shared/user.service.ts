@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from './user.model';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class UserService {
 
   noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router:Router) { }
 
   //http methods
   postUser(user: User){
@@ -69,5 +70,22 @@ export class UserService {
       return userPayload.exp > Date.now() / 1000;
     else
       return false;
+  }
+
+  
+  private data;
+
+  setData(data){
+    this.data = data;
+  }
+
+  getData(){
+    let temp = this.data;
+    this.clearData();
+    return temp;
+  }
+
+  clearData(){
+    this.data = undefined;
   }
 }
