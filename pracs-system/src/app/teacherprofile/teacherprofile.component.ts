@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { Router } from "@angular/router";
 
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-teacherprofile',
   templateUrl: './teacherprofile.component.html',
@@ -9,6 +11,8 @@ import { Router } from "@angular/router";
 })
 export class TeacherprofileComponent implements OnInit {
 
+  faUserCircle = faUserCircle;
+  
   userDetails;
   roles;
   constructor(private userService: UserService, private router: Router) { }
@@ -17,6 +21,8 @@ export class TeacherprofileComponent implements OnInit {
     this.userService.getteacherProfile().subscribe(
       res => {
         this.userDetails = res['user'];
+        console.log("hello world");
+        console.log(this.userDetails);
         // module.exports.userDetails=this.userDetails;
         // this.roles=this.userDetails.Role.split(',');
         // if (this.roles.length==1)
@@ -34,7 +40,7 @@ export class TeacherprofileComponent implements OnInit {
             if(!a.includes(res['role'][i]['Role']))  
             a.push(res['role'][i]['Role'])
             this.roles=a
-            // console.log(this.roles,a)
+            console.log(this.roles,a)
             if (this.roles.length==1)
             {
               this.router.navigateByUrl('/teacherprofile/'+this.roles[0]);

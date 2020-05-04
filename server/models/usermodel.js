@@ -153,6 +153,10 @@ var Experiments =new mongoose.Schema({
         type:String,
         required:'Exp name cant be empty'
     },
+    Submission_date :{
+        type:String,
+        required:'Submission_date cant be empty'
+    },
     Question :{
         type:[],
         // required:'question cant be empty'
@@ -267,6 +271,10 @@ var Submission =new mongoose.Schema({
     Output :{
         type:String,
         required:'output cant be empty'
+    },
+    Outputdate :{
+        type:String,
+        required:'output date cant be empty'
     },
     Output_question :{
         type:[],

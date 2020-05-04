@@ -166,8 +166,24 @@ export class UserService {
     // console.log(params)
     return this.http.post(environment.apiBaseUrl+'/admintimetable',{data});
   }
+
+  setexperiment(data){
+    console.log(data)
+    return this.http.post(environment.apiBaseUrl+'/uploadexp',{data});
+  }
+
+  complete(data){
+    console.log(data)
+    return this.http.post(environment.apiBaseUrl+'/comexp',{data});
+  }
+  
   setrole(data){
     console.log(data,'sending')
     return this.http.post(environment.apiBaseUrl+'/role',{data});
+  }
+
+  getgrade(data){
+    console.log(data)
+    return this.http.post(environment.apiBaseUrl+'/getgrade',{data});
   }
 }

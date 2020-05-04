@@ -1,0 +1,18 @@
+.upload-option {
+    margin: 20px;
+}
+.upload-option select {
+    font-size: 20px;
+    background-color: #aaabb8;
+    color: #25274d;
+    border: 2px solid #25274d;
+    padding: 5px;
+}
+.exp-details {
+    background-color: #2e9cca;
+    padding: 15px;
+}
+.exp-details .btn {
+    background-color: #29648a;
+    color: aliceblue;
+}
